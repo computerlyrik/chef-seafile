@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: seafile
-# Recipe:: default
+# Recipe:: default::server
 #
 # Copyright 2014, Christian Fischer, computerlyrik
 #
