@@ -1,9 +1,11 @@
 seafile Cookbook
 ================
-TODO: Enter the cookbook description here.
 
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+Sets up seafile dropbox-alternative.
+
+Currently bloody alpha.
+
+If you like to help, here is the source code: https://github.com/computerlyrik/chef-seafile
 
 Requirements
 ------------
