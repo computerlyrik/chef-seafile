@@ -13,4 +13,5 @@ default['seafile']['server']['install_dir'] = '/seafile'
 default['seafile']['server']['data_dir'] = node['seafile']['server']['install_dir'] + '/data'
 
 
-
+default['seafile']['server']['db_user'] = 'seafile'
+default['seafile']['server']['db_pass'] = nil
