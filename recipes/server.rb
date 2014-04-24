@@ -26,11 +26,12 @@ node.set_unless['seafile']['server']['db_pass'] = secure_password
 #mysql_database 'seafile-db'
 #mysql_database 'seahub-db'
 
+include_recipe 'apt'
 %w(python2.7 python-setuptools python-simplejson python-imaging sqlite3).each do |pkg|
   package pkg
 end
 
-url = 'http://seafile.googlecode.com/files/seafile-server_' + node['seafile']['server']['version']
+url = 'https://bitbucket.org/haiwen/seafile/downloads/seafile-server_' + node['seafile']['server']['version']
 
 if node['kernel']['machine'] == 'x86_64'
   url += '_x86-64.tar.gz'
@@ -56,7 +57,7 @@ service 'seafile' do
 end
 
 service 'seahub' do
-  start_command path + '/seahub.sh ' + node['seafile']['server']['web_port'] + ' start'
+# TODO MAKE WORK  start_command path + '/seahub.sh ' + node['seafile']['server']['web_port'] + ' start'
   stop_command path + '/seahub.sh stop'
   action :start
 end
