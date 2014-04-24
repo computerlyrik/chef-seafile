@@ -24,18 +24,32 @@ node['seafile']['server']['db_pass'].set_unless = secure_password
   package pkg
 end
 
-url = 'http://seafile.googlecode.com/files/seafile-server_'
-if 64 bit do
-fname = url+node['seafile']['version']+'_i386.tar.gz'
-#or for 64bit
-fname = url+node['seafile']['version']+'_x86-64.tar.gz'
+url = 'http://seafile.googlecode.com/files/seafile-server_' + node['seafile']['server']['version'] + 
+if node['kernel']['machine'] =~ 'x86_64' do
+  url += '_x86-64.tar.gz'
+else
+  url += '_i386.tar.gz'
+end
 
-file fname
+path = '/usr/local/seafile'
+ark 'seafile' do
+  url url
+end
 
-mkdir haiwen  
-mv seafile-server_* haiwen
-cd haiwen
-# after moving seafile-server_* to this directory
-tar -xzf seafile-server_*
-mkdir installed
-mv seafile-server_* installed
+template 'ccnet.conf'
+template 'seafile.conf'
+template 'seahub_settings.py'
+
+
+service 'seafile' do
+  start_command path + '/seafile.sh start'
+  stop_command path + '/seafile.sh stop'
+  restart_command path + '/seafile.sh restart'
+  action :start
+end
+
+service 'seahub' do
+  start_command path + '/seahub.sh ' + node['seafile']['server']['web_port'] + ' start'
+  stop_command path + '/seahub.sh stop'
+  action :start
+end
