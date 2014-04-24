@@ -17,15 +17,22 @@
 # limitations under the License.
 #
 
+::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
 # Database setup
-node['seafile']['server']['db_pass'].set_unless = secure_password
+node.set_unless['seafile']['server']['db_pass'] = secure_password
+
+#mysql user seafile
+#mysql_database 'ccnet-db'
+#mysql_database 'seafile-db'
+#mysql_database 'seahub-db'
 
 %w(python2.7 python-setuptools python-simplejson python-imaging sqlite3).each do |pkg|
   package pkg
 end
 
-url = 'http://seafile.googlecode.com/files/seafile-server_' + node['seafile']['server']['version'] + 
-if node['kernel']['machine'] =~ 'x86_64' do
+url = 'http://seafile.googlecode.com/files/seafile-server_' + node['seafile']['server']['version']
+
+if node['kernel']['machine'] == 'x86_64'
   url += '_x86-64.tar.gz'
 else
   url += '_i386.tar.gz'
