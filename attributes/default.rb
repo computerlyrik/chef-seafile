@@ -7,12 +7,12 @@ default['seafile']['server']['host'] = node['fqdn']
 # The TCP port used by ccnet, the underlying networking service of Seafile 	Default is 10001. If it's been used by other service, you can set it to another port.
 default['seafile']['server']['ccnet_port'] = 10001	
 #	The TCP port used by Seafile to transfer data 	Default is 12001. If it's been used by other service, you can set it to another port.
-default['seafile']['server']['data_port'] = 12001	
+default['seafile']['server']['seafile_port'] = 12001	
 # The TCP port used by Seafile httpserver 	Default is 8082. If it's been used by other service, you can set it to another port. 
-default['seafile']['server']['http_port'] = 8082
+default['seafile']['server']['seafile_http_port'] = 8082
 
 # The TCP port used by Seafile Webinterface
-default['seafile']['server']['web_port'] = 8000
+default['seafile']['server']['seahub_port'] = 8000
 
 default['seafile']['server']['install_dir'] = '/seafile'
 # Seafile stores your data in this directory. By default it'll be placed in the current directory. 	The size of this directory will increase as you put more and more data into Seafile. Please select a disk partition with enough free space.

@@ -44,9 +44,10 @@ ark 'seafile' do
   url url
 end
 
-template 'ccnet.conf'
-template 'seafile.conf'
-template 'seahub_settings.py'
+directory node['seafile']['server']['conf_dir']
+template path  + '/../ccnet/ccnet.conf'
+template path  + '/../seafile.conf'
+template path  + '/../seahub_settings.py'
 
 
 service 'seafile' do
@@ -57,7 +58,8 @@ service 'seafile' do
 end
 
 service 'seahub' do
-# TODO MAKE WORK  start_command path + '/seahub.sh ' + node['seafile']['server']['web_port'] + ' start'
+# TODO MAKE WORK  start_command path + '/seahub.sh ' + node['seafile']['server']['seahub_port'] + ' start'
   stop_command path + '/seahub.sh stop'
+# TODO MAKE WORK  restart_command path + '/seahub.sh ' + node['seafile']['server']['seahub_port'] + ' restart'
   action :start
 end

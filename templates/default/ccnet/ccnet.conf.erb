@@ -1,0 +1,11 @@
+[General]
+USER_NAME = testserver
+ID = ae4c3e17a03824a4c6593b1c9fb659007df14d42
+NAME = <%= node['seafile']['server']['name'] %>
+SERVICE_URL = http://<%= node['seafile']['server']['host'] %>:<%= node['seafile']['server']['seahub_port'] %>
+
+[Network]
+PORT = <%= node['seafile']['server']['ccnet_port'] %>
+
+[Client]
+PORT = 13418
